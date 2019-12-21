@@ -3,6 +3,7 @@ import '../css/general.scss';
 import '../css/nav.scss';
 import '../css/swiper.scss';
 
-import { swiper } from './swiper.js';
+import * as swiper from './swiper.js';
 
-swiper();
+swiper.loadSwiper()
+swiper.swipeOpen();
