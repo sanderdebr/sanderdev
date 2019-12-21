@@ -1,0 +1,51 @@
+<html lang="en">
+<head>
+    <script type="text/javascript">
+        var timerStart = Date.now();
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sander de Bruijn - Portfolio</title>
+</head>
+<body>
+
+    <header>
+        <nav class="nav">
+            <div class="nav__icons">
+                <i class="fab fa-dribbble"></i>
+                <i class="fab fa-github"></i>
+                <i class="fab fa-codepen"></i>
+            </div>
+            <div class="nav__logo">Sander de Bruijn<span class="nav__logo--spark">*</span></div>
+            <div class="nav__menu">
+                <p class="nav__menu--p">MENU</p>
+            </div>
+        </nav>
+    </header>
+
+    <section class="swiper">
+            <div class="swiper__item">
+                <h1 class="swiper__intro-title">Hello!</h1>
+                <h2 class="swiper__intro-subtitle">My name is Sander de Bruijn.</h2>
+                <p>I'm a frontend developer with an interest in design & animation. Specialized in JavaScript with over 5 years of professional experience in building the web and working with technologies like NodeJS.</p>
+            </div>
+            <div class="swiper__item">
+                <img src="./img/slide1.jpg">
+            </div>
+            <div class="swiper__item">
+                <img src="./img/slide2.jpg">
+            </div>
+            <div class="swiper__item">
+                <img src="./img/slide3.jpg">
+            </div> 
+    </section>
+
+    <script src="https://kit.fontawesome.com/69b7308dc3.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        window.addEventListener('load', function() {
+            console.log("Time until everything loaded: ", Date.now()-timerStart, "ms");
+        });
+   </script>
+<script type="text/javascript" src="js/bundle.js"></script></body>
+</html>

@@ -1,0 +1,84 @@
+@import './variables';
+
+.nav {
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+    padding: 0 3em;
+    background: $color1;
+}
+
+.nav__icons i {
+    margin-right: 2em;
+}
+
+.nav__logo {
+    font-size: 1.2em;
+    text-transform: uppercase;
+    position: relative;
+    font-weight: bolder;
+    .nav__logo--spark {
+        color: $color2;
+        font-size: 1em;
+        position: absolute;
+        top: -.4em;
+        right: -.6em;
+    }
+}
+
+.nav__menu {
+    width: 150px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.nav__menu--p {
+    font-family: $font1;
+    height: 20px;
+    text-transform: uppercase;
+    font-size: .8em;
+    font-weight: 600;
+    position: relative;
+    transition: $animate1;
+    cursor: pointer;
+    display: flex;
+    align-items: flex-end;
+}
+
+.nav__menu--p::before {
+    content: '';
+    position: absolute;
+    width: 57px;
+    height: 2px;
+    left: -82px;
+    top: 5px;
+    background: $white;
+    transition: $animate1;
+}
+
+.nav__menu--p::after {
+    content: '';
+    transition: $animate1;
+    position: absolute;
+    width: 0px;
+    height: 2px;
+    left: -35px;
+    top: 2px;
+}
+
+.nav__menu--p:hover {
+    &::before {
+        width: 20px;
+        left: -35px;
+        top: 7px;
+        background: $white;
+    }
+    &::after {
+        width: 20px;
+        background: $white;
+    }
+}
