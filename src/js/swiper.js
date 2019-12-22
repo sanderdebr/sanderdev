@@ -1,4 +1,4 @@
-const loadSwiper = () => {
+export const loadSwiper = () => {
     const slider = document.querySelector('.swiper');
     let isDown = false;
     let startX;
@@ -27,20 +27,18 @@ const loadSwiper = () => {
     });
 }
 
-const swipeOpen = () => {
+export const swipeOpen = () => {
     const swiperTitles = document.querySelectorAll('.swiper__item--title');
     const overlay = document.querySelector('.overlay');
+    const swiper = document.querySelector('.swiper');
 
     const openItem = e => {
         const swipeItem = e.target.parentNode;
-        gsap.to(overlay, .6, {height: '100%', ease: Power4.easeInOut});
+        gsap.to(overlay, .6, {height: '100%', ease: Power4.easeInOut})
+        //gsap.to(swiper, .3, {marginTop: '-100vh', ease: Power4.easeInOut});
     }
 
     Array.from(swiperTitles).forEach(title => {
-        title.addEventListener('click', (e) => {
-            openItem(e);
-        })
+        title.addEventListener('click', (e) => openItem(e) );
     })
 }
-
-export { loadSwiper, swipeOpen };

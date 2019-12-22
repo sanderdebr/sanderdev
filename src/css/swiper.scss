@@ -24,19 +24,35 @@
 }
 
 .swiper__item:first-child {
+    z-index: 10;
     display: inline-block;
     min-width: 550px;
     padding: 0 6em 0 2em;
     color: $lightgray;
+    .swiper__face {
+        border-radius: 50%;
+        width: 100px;
+        height: auto;
+        margin-left: 1.5em;
+        margin-top: -3em;
+    }
+    .swiper__heading {
+        display: flex;
+        align-items: center;
+        padding-bottom: .5em;
+    }
     .swiper__title {
         font-weight: bold;
+        font-family: $font2;
+        padding-right: .5em;
+        margin: 0;
     }
     .swiper__subtitle {
         font-weight: 100;
+        margin: 0;
     }
-    .swiper__signature {
-        font-family: $font2;
-        font-size: 3em;
+    .link-group {
+        padding-top: .5em;
     }
     &:hover {
         transform: scale(1);
