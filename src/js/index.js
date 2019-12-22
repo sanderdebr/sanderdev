@@ -2,12 +2,14 @@ import '../css/variables.scss';
 import '../css/general.scss';
 import '../css/nav.scss';
 import '../css/swiper.scss';
+import '../css/project.scss';
 
 import * as swiper from './swiper.js';
 
 // Load swiper
 swiper.loadSwiper(true);
 swiper.swipeOpen();
+swiper.swipeClose();
 
 // Hover links in swiper
 const links = document.querySelectorAll('.link');

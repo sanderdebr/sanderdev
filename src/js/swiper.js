@@ -40,18 +40,38 @@ export const loadSwiper = turnOn => {
 
 export const swipeOpen = () => {
     const swiperTitles = document.querySelectorAll('.swiper__item--title');
-    const overlay = document.querySelector('.overlay');
+    const project = document.querySelector('.project');
+    const projectContent = document.querySelector('.project__wrapper');
     const swiper = document.querySelector('.swiper');
+    const body = document.querySelector('body');
+    const back = document.querySelector('.project__back');
 
     const openItem = e => {
         const swipeItem = e.target.parentNode;
-        gsap.to(overlay, .6, {height: '100%', ease: Power4.easeInOut})
+        gsap.to(project, .6, {display: 'block', height: 'fit-content', ease: Power4.easeInOut});
+        gsap.fromTo(projectContent, 1, {opacity: 0}, {opacity: 1, ease: Power4.easeInOut});
+        body.style.overflowY = 'scroll';
         //gsap.to(swiper, .3, {marginTop: '-100vh', ease: Power4.easeInOut});
     }
 
     Array.from(swiperTitles).forEach(title => {
         title.addEventListener('click', (e) => openItem(e) );
     })
+}
+
+export const swipeClose = () => {
+    const project = document.querySelector('.project');
+    const projectContent = document.querySelector('.project__wrapper');
+    const back = document.querySelector('.project__back');
+
+    const closeItem = () => {
+        gsap.fromTo(projectContent, .6, {opacity: 1}, {opacity: 0, ease: Power4.easeInOut});
+        gsap.to(project, 1, {display: 'none', height: '0%', ease: Power4.easeInOut})
+        body.style.overflowY = 'hidden';
+    }
+
+    back.addEventListener('click', closeItem);
+    
 }
 
 export const linkHover = (e, bool) => {
