@@ -1,30 +1,41 @@
-export const loadSwiper = () => {
+export const loadSwiper = turnOn => {
+    
     const slider = document.querySelector('.swiper');
-    let isDown = false;
-    let startX;
-    let scrollLeft;
 
-    slider.addEventListener('mousedown', (e) => {
-        isDown = true;
-        slider.classList.add('active');
-        startX = e.pageX - slider.offsetLeft;
-        scrollLeft = slider.scrollLeft;
-    });
-    slider.addEventListener('mouseleave', () => {
-        isDown = false;
-        slider.classList.remove('active');
-    });
-    slider.addEventListener('mouseup', () => {
-        isDown = false;
-        slider.classList.remove('active');
-    });
-    slider.addEventListener('mousemove', (e) => {
-        if(!isDown) return;
-        e.preventDefault();
-        const x = e.pageX - slider.offsetLeft;
-        const walk = (x - startX) * 1.5; //scroll-fast
-        slider.scrollLeft = scrollLeft - walk;
-    });
+    if (turnOn) {
+
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+        
+        slider.addEventListener('mousedown', (e) => {
+            isDown = true;
+            slider.classList.add('active');
+            startX = e.pageX - slider.offsetLeft;
+            scrollLeft = slider.scrollLeft;
+        });
+        slider.addEventListener('mouseleave', () => {
+            isDown = false;
+            slider.classList.remove('active');
+        });
+        slider.addEventListener('mouseup', () => {
+            isDown = false;
+            slider.classList.remove('active');
+        });
+        slider.addEventListener('mousemove', (e) => {
+            if(!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - slider.offsetLeft;
+            const walk = (x - startX) * 1.5; //scroll-fast
+            slider.scrollLeft = scrollLeft - walk;
+        });
+
+    } else {
+        slider.removeEventListener('mousedown', (e) => {});
+        slider.removeEventListener('mouseleave', (e) => {});
+        slider.removeEventListener('mouseup', (e) => {});
+        slider.removeEventListener('mousemove', (e) => {});
+    }
 }
 
 export const swipeOpen = () => {
@@ -41,4 +52,13 @@ export const swipeOpen = () => {
     Array.from(swiperTitles).forEach(title => {
         title.addEventListener('click', (e) => openItem(e) );
     })
+}
+
+export const linkHover = (e, bool) => {
+    if (bool) {
+        document.body.style.cursor = 'pointer';
+        e.target.classList.toggle('active');
+    } else {
+        e.target.classList.toggle('active');
+    }
 }

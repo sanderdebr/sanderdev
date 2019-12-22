@@ -15,6 +15,9 @@ body {
   line-height: 180%;
   font-weight: 300;
   overflow: hidden;
+  @media all and (max-width: $mobile) {
+    overflow-y: scroll;
+  }
 }
 
 h1 { font-size: 3.5em }

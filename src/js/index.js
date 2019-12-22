@@ -6,21 +6,23 @@ import '../css/swiper.scss';
 import * as swiper from './swiper.js';
 
 // Load swiper
-swiper.loadSwiper()
+swiper.loadSwiper(true);
 swiper.swipeOpen();
 
-const linkHover = (e, bool) => {
-    console.log(bool);
-    if (bool) {
-        document.body.style.cursor = 'pointer';
-        e.target.classList.toggle('active');
-    } else {
-        e.target.classList.toggle('active');
-    }
+// Hover links in swiper
+const links = document.querySelectorAll('.link');
+Array.from(links).forEach(link => link.addEventListener('mouseover', e => swiper.linkHover(e, true)));
+Array.from(links).forEach(link => link.addEventListener('mouseout', e => swiper.linkHover(e, false)));
+
+// Turn of swiper on mobile
+if (window.innerWidth < 900) {
+    swiper.loadSwiper(false);
 }
 
-const links = document.querySelectorAll('.link');
-Array.from(links).forEach(link => link.addEventListener('mouseover', e => linkHover(e, true)));
-Array.from(links).forEach(link => link.addEventListener('mouseout', e => linkHover(e, false)));
-
-console.log(links);
+window.addEventListener('resize', () => {
+    if (window.innerWidth < 900) {
+        swiper.loadSwiper(false);
+    } else {
+        swiper.loadSwiper(true);
+    }
+});

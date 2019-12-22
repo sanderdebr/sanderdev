@@ -21,6 +21,13 @@
     &::-webkit-scrollbar-track { -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); ; }
     &::-webkit-scrollbar { width: 6px;  background-color: rgba(255,255,255,0.3); border: 6px solid $color1; }
     &::-webkit-scrollbar-thumb {background-color: $color2; border: 6px solid $color1;  }
+    @media all and (max-width: $mobile) {
+        flex-direction: column;
+        cursor: default;
+        padding-top: 150px;
+        width: 100vw;
+        height: auto;
+    }
 }
 
 .swiper__item:first-child {
@@ -58,6 +65,9 @@
         transform: scale(1);
         margin: 0 1em;
     }
+    @media all and (max-width: $mobile) {
+        width: 100vw;
+    }
 }
 
 .swiper__item {
@@ -72,6 +82,9 @@
         filter: grayscale(1);
         transition: $animate1;
         position: relative;
+        @media all and (max-width: $mobile) {
+            width: 100vw;
+        }
     }
     .swiper__item--title {
         z-index: 2;
@@ -96,6 +109,16 @@
         &:hover {
             cursor: pointer;
         }
+        @media all and (max-width: $mobile) {
+            opacity: 1;
+            text-align: center;
+            left: 1em;
+            bottom: 1em;
+            transform: none;
+            &:before {
+                content: none;
+            }
+        }
     }
     &.active {
         z-index: 2;
@@ -116,6 +139,9 @@
             z-index: 2;
             transform: translateX(60%);
             opacity: 1;
+            @media all and (max-width: $mobile) {
+                transform: none;
+            }
         }
     }
 }
