@@ -1,6 +1,6 @@
+import { elements } from './elements.js';
+
 export const loadSwiper = turnOn => {
-    
-    const slider = document.querySelector('.swiper');
 
     if (turnOn) {
 
@@ -8,70 +8,82 @@ export const loadSwiper = turnOn => {
         let startX;
         let scrollLeft;
         
-        slider.addEventListener('mousedown', (e) => {
+        elements.swiper.addEventListener('mousedown', (e) => {
             isDown = true;
-            slider.classList.add('active');
-            startX = e.pageX - slider.offsetLeft;
-            scrollLeft = slider.scrollLeft;
+            elements.swiper.classList.add('active');
+            startX = e.pageX - elements.swiper.offsetLeft;
+            scrollLeft = elements.swiper.scrollLeft;
         });
-        slider.addEventListener('mouseleave', () => {
+        elements.swiper.addEventListener('mouseleave', () => {
             isDown = false;
-            slider.classList.remove('active');
+            elements.swiper.classList.remove('active');
         });
-        slider.addEventListener('mouseup', () => {
+        elements.swiper.addEventListener('mouseup', () => {
             isDown = false;
-            slider.classList.remove('active');
+            elements.swiper.classList.remove('active');
         });
-        slider.addEventListener('mousemove', (e) => {
+        elements.swiper.addEventListener('mousemove', (e) => {
             if(!isDown) return;
             e.preventDefault();
-            const x = e.pageX - slider.offsetLeft;
+            const x = e.pageX - elements.swiper.offsetLeft;
             const walk = (x - startX) * 1.5; //scroll-fast
-            slider.scrollLeft = scrollLeft - walk;
+            elements.swiper.scrollLeft = scrollLeft - walk;
         });
 
     } else {
-        slider.removeEventListener('mousedown', (e) => {});
-        slider.removeEventListener('mouseleave', (e) => {});
-        slider.removeEventListener('mouseup', (e) => {});
-        slider.removeEventListener('mousemove', (e) => {});
+        elements.swiper.removeEventListener('mousedown', (e) => {});
+        elements.swiper.removeEventListener('mouseleave', (e) => {});
+        elements.swiper.removeEventListener('mouseup', (e) => {});
+        elements.swiper.removeEventListener('mousemove', (e) => {});
     }
 }
 
 export const swipeOpen = () => {
-    const swiperTitles = document.querySelectorAll('.swiper__item--title');
-    const project = document.querySelector('.project');
-    const projectContent = document.querySelector('.project__wrapper');
-    const swiper = document.querySelector('.swiper');
-    const body = document.querySelector('body');
-    const back = document.querySelector('.project__back');
 
+    // Open modal function
     const openItem = e => {
-        const swipeItem = e.target.parentNode;
-        gsap.to(project, .6, {display: 'block', height: 'fit-content', ease: Power4.easeInOut});
-        gsap.fromTo(projectContent, 1, {opacity: 0}, {opacity: 1, ease: Power4.easeInOut});
-        body.style.overflowY = 'scroll';
-        //gsap.to(swiper, .3, {marginTop: '-100vh', ease: Power4.easeInOut});
+        gsap.fromTo(elements.project, .6, {opacity: 0}, {opacity: 1, display: 'block', height: '100%', ease: Power4.easeInOut});
+        elements.body.style.overflowY = 'scroll';
+
+        // Load data based on data link attr
+        const dataLink = e.target.dataset.link;
+
+        // Load data in project details modal
+        const getData = async dataLink => {
+            try {
+                const response = await fetch(`./data/${dataLink}.json`);
+                const result = await response.json();
+                if (result) {
+                    // Set data to retrieved json data
+                    elements.projectSubTitle.innerText = result.subTitle;
+                    elements.projectTitle.innerText = result.title;
+                    elements.projectText.innerText = result.text;
+                } else {
+                    throw err;
+                }
+            } catch (err) {
+                alert(err);
+            }
+        }
+
+        getData(dataLink);
+
     }
 
-    Array.from(swiperTitles).forEach(title => {
-        title.addEventListener('click', (e) => openItem(e) );
+    // Open modal event listeners on
+    Array.from(elements.swiperLinks).forEach(link => {
+        link.addEventListener('click', (e) => openItem(e) );
     })
 }
 
 export const swipeClose = () => {
-    const project = document.querySelector('.project');
-    const projectContent = document.querySelector('.project__wrapper');
-    const back = document.querySelector('.project__back');
 
     const closeItem = () => {
-        gsap.fromTo(projectContent, .6, {opacity: 1}, {opacity: 0, ease: Power4.easeInOut});
-        gsap.to(project, 1, {display: 'none', height: '0%', ease: Power4.easeInOut})
+        gsap.to(elements.projectImages, 1, {opacity: 0, display: 'none', ease: Power4.easeInOut})
+        gsap.to(elements.project, 1, {opacity: 0, display: 'none', ease: Power4.easeInOut})
         body.style.overflowY = 'hidden';
     }
-
-    back.addEventListener('click', closeItem);
-    
+    elements.back.addEventListener('click', closeItem);
 }
 
 export const linkHover = (e, bool) => {
