@@ -42,7 +42,7 @@ export const swipeOpen = () => {
 
     // Open modal function
     const openItem = e => {
-        gsap.fromTo(elements.project, .6, {opacity: 0}, {opacity: 1, display: 'block', height: '100%', ease: Power4.easeInOut});
+        gsap.fromTo(elements.project, .6, {opacity: 0, top: '100vh'}, {opacity: 1, top: 100, display: 'block', height: '100%', ease: Power4.easeInOut});
         elements.body.style.overflowY = 'scroll';
 
         // Load data based on data link attr
@@ -79,8 +79,8 @@ export const swipeOpen = () => {
 export const swipeClose = () => {
 
     const closeItem = () => {
-        gsap.to(elements.projectImages, 1, {opacity: 0, display: 'none', ease: Power4.easeInOut})
-        gsap.to(elements.project, 1, {opacity: 0, display: 'none', ease: Power4.easeInOut})
+        gsap.to(elements.projectImages, .6, {opacity: 0, display: 'none', ease: Power4.easeInOut})
+        gsap.to(elements.project, .6, {opacity: 0, top: '100vh', display: 'none', ease: Power4.easeInOut})
         body.style.overflowY = 'hidden';
     }
     elements.back.addEventListener('click', closeItem);

@@ -73,6 +73,22 @@
     }
 }
 
+.swiper__item:nth-child(2) .swiper__holder { &:before { 
+    background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+ }}
+.swiper__item:nth-child(3) .swiper__holder { &:before { 
+    background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+ }}
+.swiper__item:nth-child(4) .swiper__holder { &:before { 
+    background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+}}
+.swiper__item:nth-child(5) .swiper__holder { &:before { 
+    background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}}
+.swiper__item:nth-child(6) .swiper__holder { &:before { 
+    background-image: linear-gradient(120deg, #f093fb 0%, #f5576c 100%);
+}}
+
 .swiper__item {
     display: flex;
     margin: 0 1em;
@@ -81,7 +97,7 @@
     transition: $animate1; 
     img {
         max-height: 450px;
-        opacity: .85;
+        opacity: .45;
         filter: grayscale(1);
         transition: $animate1;
         position: relative;
@@ -100,6 +116,12 @@
         max-width: 300px;
         line-height: 130%;
         transition: $animate1;
+        color: $white;
+        text-shadow: 2px 3px 5px rgba(0,0,0,0.1);
+        .swiper__title-icon {
+            font-size: 50%;
+            transition: $animate1;
+        }
         &:before {
             position: absolute;
             content: '';
@@ -111,6 +133,9 @@
         }
         &:hover {
             cursor: pointer;
+            .swiper__title-icon {
+                transform: translateX(80px);
+            }
         }
         @media all and (max-width: $mobile) {
             opacity: 1;
@@ -121,6 +146,20 @@
             &:before {
                 content: none;
             }
+        }
+    }
+    .swiper__holder {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        &:before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            content: '';
+            width: 0%;;
+            height: 100%;
+            transition: $animate2;
         }
     }
     &.active {
@@ -136,7 +175,7 @@
         margin: 0 3em;
         img {
             filter: grayscale(0);
-            opacity: 1;
+            opacity: .5;
         }
         .swiper__item--title {
             z-index: 2;
@@ -144,6 +183,11 @@
             opacity: 1;
             @media all and (max-width: $mobile) {
                 transform: none;
+            }
+        }
+        .swiper__holder {
+            &:before {
+                width: 100%;
             }
         }
     }
