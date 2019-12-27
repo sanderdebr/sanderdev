@@ -53,10 +53,12 @@
         font-family: $font2;
         padding-right: .5em;
         margin: 0;
+        color: $white;
     }
     .swiper__subTitle {
         font-weight: 100;
         margin: 0;
+        color: $lightgray;
     }
     .link-group {
         padding-top: .5em;
@@ -107,7 +109,7 @@
     }
     .swiper__item--title {
         z-index: 2;
-        font-weight: bold;
+        font-weight: 500;
         margin: 0;
         position: absolute;
         right: 0;
@@ -120,6 +122,8 @@
         text-shadow: 2px 3px 5px rgba(0,0,0,0.1);
         .swiper__title-icon {
             font-size: 50%;
+            display: block;
+            padding-top: .3em;
             transition: $animate1;
         }
         &:before {
@@ -133,8 +137,9 @@
         }
         &:hover {
             cursor: pointer;
+            text-shadow: 2px 3px 5px rgba(0,0,0,0.3);
             .swiper__title-icon {
-                transform: translateX(80px);
+                transform: translateX(20px);
             }
         }
         @media all and (max-width: $mobile) {

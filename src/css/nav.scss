@@ -8,12 +8,35 @@
     justify-content: space-between;
     align-items: center;
     height: 100px;
-    padding: 0 3.5em;
+    padding: 0 4em;
     background: transparent;
 }
 
-.nav__icons i {
-    margin-right: 2em;
+.nav__icons {
+    display: flex;
+    .nav__icon {
+        margin-right: 2em;
+        cursor: pointer;
+        transition: all 300ms ease;
+        display: flex;
+        color: $white;
+        .nav__icon-text {
+            color: $lightgray;
+            font-weight: 300;
+            font-family: $font1;
+            margin-right: -.8em;
+            margin-left: 1em;
+            transition: all 300ms ease;
+
+        }
+        &:hover {
+            color: darkgray;
+            .nav__icon-text {
+                opacity: 1;
+                color: white;
+            }
+        }
+    }
 }
 
 .nav__logo {
