@@ -7,9 +7,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 100px;
+    height: 80px;
     padding: 0 4em;
-    background: transparent;
+    background: rgba($color1, .8);
+    @media all and (max-width: $mobile) {
+        padding: 0 2em;
+    }
 }
 
 .nav__icons {
@@ -20,20 +23,40 @@
         transition: all 300ms ease;
         display: flex;
         color: $white;
+        @media all and (max-width: $mobile) {
+            margin-right: 2em;
+            transform: scale(1.5);
+        }
         .nav__icon-text {
             color: $lightgray;
             font-weight: 300;
             font-family: $font1;
             margin-right: -.8em;
             margin-left: 1em;
-            transition: all 300ms ease;
-
+            transition: $animate1;
+            position: relative;
+            @media all and (max-width: $mobile) {
+                display: none;
+            }
+            &:after {
+                content: '';
+                position: absolute;
+                width: 0%;
+                height: 1px;
+                background: $color2;
+                left: 0;
+                top: 22.5px;
+                transition: $animate1;
+            }
         }
         &:hover {
-            color: darkgray;
+            color: white;
             .nav__icon-text {
                 opacity: 1;
                 color: white;
+                &:after {
+                    width: 100%;
+                }
             }
         }
     }
@@ -44,6 +67,9 @@
     text-transform: uppercase;
     position: relative;
     font-weight: bolder;
+    @media all and (max-width: $mobile) {
+        display: none;
+    }
     .nav__logo--spark {
         color: $color2;
         font-size: 1em;
